@@ -37,10 +37,20 @@ public class Quick{
   System.out.println(" ");*/
   return pos;
 }
+public static String toString(int[] data){
+  String s="";
+  for (int x=0;x<data.length;x++){
+    s+=x+",";
+  }
+  return s;
+}
 //return value that is the kth smallest value of the array
 public static int quickselect(int[] data,int k){
-  int temp=-1;
+
+  int temp=partition(data, 0,data.length-1);
+
   while(temp!=data.length-k){
+      System.out.println("i");
     if(temp>k){
       temp=partition(data, temp,data.length-1);
     }
@@ -51,18 +61,25 @@ public static int quickselect(int[] data,int k){
   return data[temp];
 }
   public static void main(String[] args) {
+
     int[] ary= { 2, 10, 15, 23, 0,  5} ;
     quickselect( ary , 0 );
+    System.out.println(toString(ary));
     System.out.println("would return 0");
     quickselect( ary , 1 );
+    System.out.println(toString(ary));
     System.out.println("would return 2");
-    quickselect( ary , 2 ) ; 
+    quickselect( ary , 2 ) ;
+    System.out.println(toString(ary));
     System.out.println("would return 5");
     quickselect( ary , 3 )  ;
+    System.out.println(toString(ary));
     System.out.println("would return 10");
     quickselect( ary , 4 )  ;
+    System.out.println(toString(ary));
     System.out.println("would return 15");
     quickselect( ary , 5 )  ;
+    System.out.println(toString(ary));
     System.out.println("would return 23");
   }
 }
