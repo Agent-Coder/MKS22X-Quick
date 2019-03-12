@@ -11,7 +11,12 @@ public class Quick{
     data[x]=temp;
   //switch values to make pivot first one
   for (int i=start+1;i<end+1;i++) {
-    /*for (int h=0;h<data.length;h++ ) {
+    /*System.out.println("--------------");
+    System.out.println(i);
+    System.out.println("pos" + pos);
+    System.out.println(start);
+    System.out.println(end);
+    for (int h=0;h<data.length;h++ ) {
       System.out.print(data[h]+" ");
     }
     System.out.println("");*/
@@ -59,28 +64,26 @@ public static int selecting(int[] data, int k, int start,int end){
 */
     if(current>k){
       end=current;
-      current=partition(data,start,current);
     }
     if(current<k){
       start=current;
-      current=partition(data,current,data.length-1);
     }
   }
   return data[current];
 }
- /*public static void main(String[] args) {
+/* public static void main(String[] args) {
+   int[] ary= {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18} ;
+    //int[] ary= { 2, 22,33,22,33,7} ;
 
-    int[] ary= { 2, 22,33,22,33,22,33,22,33,22,3,33,2,33,2,33,23,33,33,22, 27} ;
-
-    System.out.println(quickselect( ary , 1 ));
+    //System.out.println(partition( ary , 0,5 ));
     //System.out.println(toString(ary));
-    System.out.println("would return 2");
-    System.out.println(quickselect( ary , 2 )) ;
+    //System.out.println("would return 2");
+    //System.out.println(quickselect( ary , 2 )) ;
     //System.out.println(toString(ary));
-    System.out.println("would return 5");
-    System.out.println(quickselect( ary , 3 ))  ;
+    //System.out.println("would return 5");
+    //System.out.println(quickselect( ary , 3 ))  ;
     //System.out.println(toString(ary));
-    System.out.println("would return 10");
+    //System.out.println("would return 10");
     System.out.println(quickselect( ary , 4 ));
     //System.out.println(toString(ary));
     System.out.println("would return 15");
