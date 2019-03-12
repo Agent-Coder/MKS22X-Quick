@@ -3,7 +3,7 @@ public class Quick{
   public static int partition(int[] data,int start, int end){
     int pos=start;
     int x=(int)(Math.random()*100%(end-start+1))+start;
-    System.out.println(x);
+    //System.out.println(x);
   //holds index of chosen pivot point
     int temp=data[start];
   //temporary used during switching
@@ -11,10 +11,10 @@ public class Quick{
     data[x]=temp;
   //switch values to make pivot first one
   for (int i=start+1;i<end+1;i++) {
-    for (int h=0;h<data.length;h++ ) {
+    /*for (int h=0;h<data.length;h++ ) {
       System.out.print(data[h]+" ");
     }
-    System.out.println("");
+    System.out.println("");*/
     if (data[i]<data[start]){
       pos++;
       temp=data[pos];
@@ -58,25 +58,24 @@ public static int selecting(int[] data, int k, int start,int end,int current){
  public static void main(String[] args) {
 
     int[] ary= { 2, 10, 15, 23, 0,  5} ;
-    System.out.println(partition(ary,3,5));
-    /*System.out.println(ary);
-    quickselect( ary , 0 );
-    System.out.println(toString(ary));
+    //System.out.println(partition(ary,3,5));
+    System.out.println(quickselect( ary , 0 ));
+    //System.out.println(toString(ary));
     System.out.println("would return 0");
-    quickselect( ary , 1 );
-    System.out.println(toString(ary));
+    System.out.println(quickselect( ary , 1 ));
+    //System.out.println(toString(ary));
     System.out.println("would return 2");
-    quickselect( ary , 2 ) ;
-    System.out.println(toString(ary));
+    System.out.println(quickselect( ary , 2 )) ;
+    //System.out.println(toString(ary));
     System.out.println("would return 5");
-    quickselect( ary , 3 )  ;
-    System.out.println(toString(ary));
+    System.out.println(quickselect( ary , 3 ))  ;
+    //System.out.println(toString(ary));
     System.out.println("would return 10");
-    quickselect( ary , 4 )  ;
-    System.out.println(toString(ary));
+    System.out.println(quickselect( ary , 4 ));
+    //System.out.println(toString(ary));
     System.out.println("would return 15");
-    quickselect( ary , 5 )  ;
-    System.out.println(toString(ary));
-    System.out.println("would return 23");*/
+    System.out.println(quickselect( ary , 5 ));
+    //System.out.println(toString(ary));
+    System.out.println("would return 23");
   }
 }
