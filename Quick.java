@@ -90,6 +90,17 @@ public static int selecting(int[] data, int k, int start,int end){
   }
   return data[current];
 }
+public static void quicksort(int[] data,low,high){
+  int pivot;
+  if(low>=high){
+    return;
+  }
+  else{
+    pivot=partition(data[],low,high);
+    quicksort(data,low,pivot-1);
+    quicksort(data,pivot+1,high);
+  }
+}
  public static void main(String[] args) {
    //int[] ary= {1} ;
     int[] ary= { 2, 22,33,22,33,7} ;
