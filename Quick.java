@@ -90,16 +90,19 @@ public static int selecting(int[] data, int k, int start,int end){
   }
   return data[current];
 }
-public static void quicksort(int[] data,low,high){
+public static void quicksort(int[] data,int low,int high){
   int pivot;
   if(low>=high){
     return;
   }
   else{
-    pivot=partition(data[],low,high);
+    pivot=partition(data,low,high);
     quicksort(data,low,pivot-1);
     quicksort(data,pivot+1,high);
   }
+}
+public int partitionDutch(int[],int low,int high){
+  if(int)
 }
  public static void main(String[] args) {
    //int[] ary= {1} ;
