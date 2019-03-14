@@ -1,7 +1,6 @@
 import java.lang.Math;
 public class Quick{
   public static int partition(int[] data,int start, int end){
-    boolean rightside=false;
     int pos=start;
     int x=median(data,start,end,((end-start)/2)+start);
     //System.out.println(x);
@@ -21,7 +20,6 @@ public class Quick{
       System.out.print(data[h]+" ");
     }
     System.out.println("");*/
-    rightside=!rightside;
     if (data[i]<data[start]){
       pos++;
       temp=data[pos];
@@ -101,14 +99,61 @@ public static void quicksort(int[] data,int low,int high){
     quicksort(data,pivot+1,high);
   }
 }
-public int partitionDutch(int[],int low,int high){
-  if(int)
+public static int partitionDutch(int[] data,int low,int high){
+  int lt=low;
+  int gt=high;
+  int x=median(data,low,high,((high-low)/2)+low);
+  System.out.println(data[x]);
+//holds index of chosen pivot point
+  int temp=data[low];
+//temporary used during switching
+  data[low]=data[x];
+  data[x]=temp;
+//switch values to make pivot first one
+for (int i=1;i<gt;i++) {
+  for (int h=0;h<data.length;h++ ) {
+    System.out.print(data[h]+" ");
+  //  System.out.print(i+"ii");
+  }
+  System.out.println("--->"+lt);
+  System.out.println(gt+"<---");
+  System.out.println(low);
+  System.out.println(high);
+  System.out.println("");
+  if (data[i]<data[low]){
+    System.out.println("no");
+    temp=data[lt];
+    data[lt]=data[i];
+    data[i]=temp;
+      lt++;
+  }
+  if(data[i]>data[low]){
+
+    System.out.println("yes");
+    temp=data[gt];
+    data[gt]=data[i];
+    data[i]=temp;
+    gt--;
+    i--;
+  }
+//if the number is less than pivot, increase the position and then switch
+}
+temp=data[low];
+data[low]=data[gt];
+data[gt]=temp;
+//switch pivot point to the pos
+for (int h=0;h<data.length ;h++ ) {
+System.out.print(data[h]+" ");
+}
+System.out.println(" ");
+//System.out.println("pos"+pos);
+return gt;
 }
  public static void main(String[] args) {
    //int[] ary= {1} ;
-    int[] ary= { 2, 22,33,22,33,7} ;
+    int[] ary= { 22, 22,33,22,33,7} ;
 
-    //System.out.println(partition( ary ,0,5 ));
+    System.out.println(partitionDutch( ary ,0,5 ));
     //System.out.println(toString(ary));
     //System.out.println("would return 2");
     //System.out.println(quickselect( ary , 2 )) ;
