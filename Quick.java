@@ -100,10 +100,9 @@ public static void quicksort(int[] data,int low,int high){
   }
 }
 public static int partitionDutch(int[] data,int low,int high){
-  int lt=low;
+  int lt=low+1;
   int gt=high;
   int x=median(data,low,high,((high-low)/2)+low);
-  System.out.println(data[x]);
 //holds index of chosen pivot point
   int temp=data[low];
 //temporary used during switching
@@ -125,10 +124,9 @@ for (int i=1;i<gt;i++) {
     temp=data[lt];
     data[lt]=data[i];
     data[i]=temp;
-      lt++;
+    lt++;
   }
-  if(data[i]>data[low]){
-
+  else if(data[i]>data[low]){
     System.out.println("yes");
     temp=data[gt];
     data[gt]=data[i];
@@ -136,11 +134,16 @@ for (int i=1;i<gt;i++) {
     gt--;
     i--;
   }
+  else{
+    temp=data[lt];
+    data[lt]=data[i];
+    data[i]=temp;
+  }
 //if the number is less than pivot, increase the position and then switch
 }
 temp=data[low];
-data[low]=data[gt];
-data[gt]=temp;
+data[low]=data[lt-1];
+data[lt-1]=temp;
 //switch pivot point to the pos
 for (int h=0;h<data.length ;h++ ) {
 System.out.print(data[h]+" ");
