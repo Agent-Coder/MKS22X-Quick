@@ -1,5 +1,6 @@
 import java.util.Random;
 import java.lang.Math;
+import java.util.Arrays;
 public class Quick{
   public static int partition(int[] data,int start, int end){
     Random gen=new Random();
@@ -8,21 +9,25 @@ public class Quick{
     int temp=data[start];
     data[start]=data[x];
     data[x]=temp;
+    //System.out.println(temp + "," + i + "," + end + Arrays.toString(data));
   while (i<=end) {
-    if (data[i]>data[start]||(data[i]==data[start]&Math.abs(gen.nextInt())%2==0)){
+    if (data[i]>data[start]||(data[i]==data[start]&&Math.abs(gen.nextInt())%2==0)){
       temp=data[end];
       data[end]=data[i];
       data[i]=temp;
       end--;
+      //System.out.println(temp + "," + i + "," + end + Arrays.toString(data));
     }
     else{
       i++;
+      //System.out.println(temp + "," + i + "," + end + Arrays.toString(data));
     }
   //if the number is less than pivot, increase the position and then switch
 }
   temp=data[start];
   data[start]=data[i-1];
   data[i-1]=temp;
+  //System.out.println(temp + "," + i + "," + end + Arrays.toString(data));
   return i-1;
 }
 //return value that is the kth smallest value of the array
@@ -44,14 +49,7 @@ public static int selecting(int[] data, int k, int start,int end){
   int current=-1;
   while(current!=k){
     current=partition(data,start,end);
-    //System.out.println(start);
-    //System.out.println(end);
-    //System.out.println("--");
-    /*for (int h=0;h<data.length;h++ ) {
-      System.out.print(data[h]+" ");
-    }
-    System.out.println("");
-*/
+
     if(current>k){
       end=current-1;
     }
@@ -77,13 +75,10 @@ public static void quicksort(int[] data){
 }
 public static void quicksortDutch(int[] data,int low,int high){
   int pivot;
-  if(low>=high){
-    return;
-  }
-  else{
+  if(low<high){
     pivot=partitionDutch(data,low,high);
-    quicksortDutch(data,low,pivot);
-    quicksortDutch(data,pivot,high);
+    quicksortDutch(data,low,pivot-1);
+    quicksortDutch(data,pivot+1,high);
   }
 }
 public static int partitionDutch(int[] data,int low,int high){
@@ -96,25 +91,28 @@ public static int partitionDutch(int[] data,int low,int high){
   data[low]=data[x];
   data[x]=temp;
 //switch values to make pivot first one
-for (int i=1;i<gt;i++) {
+for (int i=lt;i<gt;i++) {
   /*for (int h=0;h<data.length;h++ ) {
     System.out.print(data[h]+" ");
   //  System.out.print(i+"ii");
-  }
-  System.out.println("--->"+lt);
+}*/
+  //System.out.println("");
+  /*System.out.println("--->"+lt);
   System.out.println(gt+"<---");
   System.out.println(low);
   System.out.println(high);
   System.out.println("");*/
   if (data[i]<data[low]){
-    //System.out.println("no");
     temp=data[lt];
     data[lt]=data[i];
     data[i]=temp;
     lt++;
   }
   else if(data[i]>data[low]){
+    //System.out.println("lt");
+    //System.out.println(gt);
     //System.out.println("yes");
+
     temp=data[gt];
     data[gt]=data[i];
     data[i]=temp;
@@ -130,18 +128,19 @@ for (int i=1;i<gt;i++) {
 }
 temp=data[low];
 data[low]=data[lt-1];
-data[lt]=temp;
+data[lt-1]=temp;
 //switch pivot point to the pos
-/*for (int h=0;h<data.length ;h++ ) {
+/*System.out.println(gt);
+for (int h=0;h<data.length ;h++ ) {
 System.out.print(data[h]+" ");
 }
 System.out.println(" ");*/
 //System.out.println("pos"+pos);
-return lt;
+return lt-1;
 }
- /*public static void main(String[] args) {
+/* public static void main(String[] args) {
    //int[] ary= {1} ;
-    int[] ary= { 22, 3,2,12,72,48} ;
+    int[] ary= { 0, 3,2,6,2,48,2} ;
     quicksort(ary);
     for (int h=0;h<ary.length ;h++ ) {
     System.out.print(ary[h]+" ");}
