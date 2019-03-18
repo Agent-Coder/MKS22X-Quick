@@ -9,28 +9,22 @@ public class Quick{
     int temp=data[start];
     data[start]=data[x];
     data[x]=temp;
-    //System.out.println(temp + "," + i + "," + end + Arrays.toString(data));
   while (i<=end) {
     if (data[i]>data[start]||(data[i]==data[start]&&Math.abs(gen.nextInt())%2==0)){
       temp=data[end];
       data[end]=data[i];
       data[i]=temp;
       end--;
-      //System.out.println(temp + "," + i + "," + end + Arrays.toString(data));
     }
     else{
       i++;
-      //System.out.println(temp + "," + i + "," + end + Arrays.toString(data));
     }
-  //if the number is less than pivot, increase the position and then switch
 }
   temp=data[start];
   data[start]=data[i-1];
   data[i-1]=temp;
-  //System.out.println(temp + "," + i + "," + end + Arrays.toString(data));
   return i-1;
 }
-//return value that is the kth smallest value of the array
 public static int median(int data[],int low,int high, int middle){
   if((data[low] <= data[high] && data[low] >= data[middle]) || (data[low] >= data[high] && data[low] <= data[middle])){
     return low;
@@ -61,47 +55,32 @@ public static int selecting(int[] data, int k, int start,int end){
 }
 public static void quicksortH(int[] data,int low,int high){
   int pivot;
-/*for (int h=low;h<high+1 ;h++ ) {
-  System.out.print(data[h]+" ");}*/
   if(low<high){
-
     pivot=partition(data,low,high);
     quicksortH(data,low,pivot-1);
     quicksortH(data,pivot+1,high);
   }
 }
 public static void quicksort(int[] data){
-  quicksortH(data,0,data.length-1);
+  quicksortDutch(data,0,data.length-1);
 }
 public static void quicksortDutch(int[] data,int low,int high){
-  int pivot;
+  int[] pivot;
   if(low<high){
     pivot=partitionDutch(data,low,high);
-    quicksortDutch(data,low,pivot-1);
-    quicksortDutch(data,pivot+1,high);
+    quicksortDutch(data,low,pivot[0]);
+    quicksortDutch(data,pivot[1],high);
   }
 }
-public static int partitionDutch(int[] data,int low,int high){
+public static int[] partitionDutch(int[] data,int low,int high){
   int lt=low+1;
   int gt=high;
   int x=median(data,low,high,((high-low)/2)+low);
-//holds index of chosen pivot point
   int temp=data[low];
-//temporary used during switching
   data[low]=data[x];
   data[x]=temp;
-//switch values to make pivot first one
-for (int i=lt;i<gt;i++) {
-  /*for (int h=0;h<data.length;h++ ) {
-    System.out.print(data[h]+" ");
-  //  System.out.print(i+"ii");
-}*/
-  //System.out.println("");
-  /*System.out.println("--->"+lt);
-  System.out.println(gt+"<---");
-  System.out.println(low);
-  System.out.println(high);
-  System.out.println("");*/
+for (int i=lt;i<=gt;i++) {
+
   if (data[i]<data[low]){
     temp=data[lt];
     data[lt]=data[i];
@@ -109,10 +88,6 @@ for (int i=lt;i<gt;i++) {
     lt++;
   }
   else if(data[i]>data[low]){
-    //System.out.println("lt");
-    //System.out.println(gt);
-    //System.out.println("yes");
-
     temp=data[gt];
     data[gt]=data[i];
     data[i]=temp;
@@ -124,40 +99,23 @@ for (int i=lt;i<gt;i++) {
     data[lt]=data[i];
     data[i]=temp;
   }
-//if the number is less than pivot, increase the position and then switch
+}
+if(low==lt-1){
+  low++;
 }
 temp=data[low];
 data[low]=data[lt-1];
 data[lt-1]=temp;
-//switch pivot point to the pos
-/*System.out.println(gt);
-for (int h=0;h<data.length ;h++ ) {
-System.out.print(data[h]+" ");
+int[] answer={lt-2,gt};
+return answer;
 }
-System.out.println(" ");*/
-//System.out.println("pos"+pos);
-return lt-1;
-}
-/* public static void main(String[] args) {
+/*public static void main(String[] args) {
    //int[] ary= {1} ;
-    int[] ary= { 0, 3,2,6,2,48,2} ;
-    quicksort(ary);
+    int[] ary= {2,3,2,3,2,6,4,8} ;
+    quicksortDutch(ary,0,7);
     for (int h=0;h<ary.length ;h++ ) {
     System.out.print(ary[h]+" ");}
-    System.out.println("");
-    //System.out.println(toString(ary));
-    //System.out.println("would return 2");
-    //System.out.println(quickselect( ary , 2 )) ;
-    //System.out.println(toString(ary));
-    //System.out.println("would return 5");
-    //System.out.println(quickselect( ary , 3 ))  ;
-    //System.out.println(toString(ary));
-    //System.out.println("would return 10");
-    //System.out.println(quickselect( ary , 0 ));
-    //System.out.println(toString(ary));
-    /*System.out.println("would return 15");
-    System.out.println(quickselect( ary , 5 ));
-    //System.out.println(toString(ary));
-    System.out.println("would return 23");*/
-  //}
+    System.out.println("---");
+    //System.out.ln(toString(ary));
+  }*/
 }
