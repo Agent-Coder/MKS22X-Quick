@@ -29,11 +29,11 @@ public static int median(int data[],int low,int high, int middle){
   if((data[low] <= data[high] && data[low] >= data[middle]) || (data[low] >= data[high] && data[low] <= data[middle])){
     return low;
   }
-  else if((data[middle] <= data[high] && data[middle] >= data[low]) || (data[middle] >= data[high] && data[middle] <= data[low])){
-    return middle;
+  else if((data[middle] <= data[high] && data[high] <= data[low]) || (data[middle] >= data[high] && data[high] >= data[low])){
+    return high;
   }
   else{
-    return high;
+    return middle;
   }
 }
 public static int quickselect(int[] data,int k){
@@ -55,9 +55,6 @@ public static int selecting(int[] data, int k, int start,int end){
 }
 public static void quicksortH(int[] data,int low,int high){
   int pivot;
-  if(high-low<=100){
-    insertionSort(data,low,high);
-  }
   if(low<high){
     pivot=partition(data,low,high);
     quicksortH(data,low,pivot-1);
@@ -68,6 +65,7 @@ public static void quicksort(int[] data){
   quicksortDutch(data,0,data.length-1);
 }
 public static void quicksortDutch(int[] data,int low,int high){
+  //System.out.println(Arrays.toString(data));
   if(low<high&&high-low<=43){
     insertionSort(data,low,high);
     return;
@@ -75,49 +73,43 @@ public static void quicksortDutch(int[] data,int low,int high){
   int[] pivot;
   if(low<high){
     pivot=partitionDutch(data,low,high);
-    quicksortDutch(data,low,pivot[0]);
-    quicksortDutch(data,pivot[1],high);
+    quicksortDutch(data,low,pivot[0]-1);
+    quicksortDutch(data,pivot[1]+1,high);
   }
 }
-public static int[] partitionDutch(int[] data,int low,int high){
-  int lt=low+1;
-  int gt=high;
-  //System.out.println(low);
-  //System.out.println(high);
-  int x=median(data,low,high,((high-low)/2)+low);
-  int temp=data[low];
-  data[low]=data[x];
-  data[x]=temp;
-for (int i=lt;i<=gt;i++) {
 
-  if (data[i]<data[low]){
+public static int[] partitionDutch(int[] data,int low,int high){
+  int lt=low;
+  int gt=high;
+  int i=low;
+  int temp;
+  int index=median(data,low,high,((high-low)/2)+low);
+  int p=data[index];
+  data[index]=data[low];
+  data[low]=p;
+while (i<=gt) {
+  //System.out.println(Arrays.toString(data));
+  if (data[i]<p){
     temp=data[lt];
     data[lt]=data[i];
     data[i]=temp;
     lt++;
+    i++;
   }
-  else if(data[i]>data[low]){
+  else if(data[i]>p){
     temp=data[gt];
     data[gt]=data[i];
     data[i]=temp;
     gt--;
-    i--;
   }
   else{
-    temp=data[lt];
-    data[lt]=data[i];
-    data[i]=temp;
+    i++;
   }
 }
-if(low==lt-1){
-  low++;
-}
-temp=data[low];
-data[low]=data[lt-1];
-data[lt-1]=temp;
-int[] answer={lt-2,gt};
+int[] answer={lt,gt};
 return answer;
 }
+
 public static void insertionSort(int[] data,int low, int high){
 int store;
 //stores number that is being placed
@@ -138,6 +130,12 @@ for (int x=low+1;x<high+1;x++){
     //set number at the place
  }
 }
+public static void main(String[] args) {
+    int[] ary={1,13,313,222,23323,3274,33,353,7,3,10,20,30};
+    int[] x=new int[ary.length];
+    quicksort(ary);
+    System.out.println(Arrays.toString(ary));
+  }
 
 
 }
