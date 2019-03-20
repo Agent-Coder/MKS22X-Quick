@@ -55,6 +55,9 @@ public static int selecting(int[] data, int k, int start,int end){
 }
 public static void quicksortH(int[] data,int low,int high){
   int pivot;
+  if(high-low<=100){
+    insertionSort(data,low,high);
+  }
   if(low<high){
     pivot=partition(data,low,high);
     quicksortH(data,low,pivot-1);
@@ -109,13 +112,26 @@ data[lt-1]=temp;
 int[] answer={lt-2,gt};
 return answer;
 }
-/*public static void main(String[] args) {
-   //int[] ary= {1} ;
-    int[] ary= {2,3,2,3,2,6,4,8} ;
-    quicksortDutch(ary,0,7);
-    for (int h=0;h<ary.length ;h++ ) {
-    System.out.print(ary[h]+" ");}
-    System.out.println("---");
-    //System.out.ln(toString(ary));
-  }*/
+public static void insertionSort(int[] data,int low, int high){
+int store;
+//stores number that is being placed
+int i;
+//keeps track of current index being examined
+for (int x=low+1;x<high+1;x++){
+    store=data[x];
+    i=x;
+    //store the value at the index we are examining
+    while (i>=low+1&&store<data[i-1]){
+      //loop backwards to find number where it is greater than stored
+      data[i]=data[i-1];
+      //start shifting if the stored number is less than current
+      i--;
+      //increment i, examines from right to left
+    }
+    data[i]=store;
+    //set number at the place
+ }
+}
+
+
 }
