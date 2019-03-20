@@ -68,6 +68,10 @@ public static void quicksort(int[] data){
   quicksortDutch(data,0,data.length-1);
 }
 public static void quicksortDutch(int[] data,int low,int high){
+  if(high-low<100){
+    insertionSort(data,low,high);
+    return;
+  }
   int[] pivot;
   if(low<high){
     pivot=partitionDutch(data,low,high);
