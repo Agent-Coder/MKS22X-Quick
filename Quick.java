@@ -68,7 +68,7 @@ public static void quicksort(int[] data){
   quicksortDutch(data,0,data.length-1);
 }
 public static void quicksortDutch(int[] data,int low,int high){
-  if(high-low<100){
+  if(low<high&&high-low<=43){
     insertionSort(data,low,high);
     return;
   }
@@ -82,6 +82,8 @@ public static void quicksortDutch(int[] data,int low,int high){
 public static int[] partitionDutch(int[] data,int low,int high){
   int lt=low+1;
   int gt=high;
+  //System.out.println(low);
+  //System.out.println(high);
   int x=median(data,low,high,((high-low)/2)+low);
   int temp=data[low];
   data[low]=data[x];
