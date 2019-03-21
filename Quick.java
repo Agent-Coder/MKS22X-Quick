@@ -130,12 +130,12 @@ for (int x=low+1;x<high+1;x++){
     //set number at the place
  }
 }
-public static void main(String[] args) {
+/*public static void main(String[] args) {
     int[] ary={1,13,313,222,23323,3274,33,353,7,3,10,20,30};
     int[] x=new int[ary.length];
     quicksort(ary);
     System.out.println(Arrays.toString(ary));
-  }
+  }*/
 
 
 }
